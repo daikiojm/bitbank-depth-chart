@@ -2,7 +2,7 @@
 
 [![github pages](https://github.com/daikiojm/bitbank-depth-chart/actions/workflows/gh-pages.yml/badge.svg?branch=main)](https://github.com/daikiojm/bitbank-depth-chart/actions/workflows/gh-pages.yml)
 
-bitbank.cc depth chart sample implementation.
+[bitbank.cc](http://app.bitbank.cc/) depth chart sample implementation.
 
 **[demo]**
 
