@@ -1,16 +1,16 @@
-import { ThemeProvider } from '@mui/material/styles';
-import { CssBaseline, GlobalStyles, createTheme } from '@mui/material';
-import { WebsocketProvider } from 'react-use-bitbank';
+import { ThemeProvider } from '@mui/material/styles'
+import { CssBaseline, GlobalStyles, createTheme } from '@mui/material'
+import { WebsocketProvider } from 'react-use-bitbank'
 
 const theme = createTheme({
   typography: {
     fontSize: 12,
   },
-});
+})
 
 type AppProviderProps = {
-  children: React.ReactNode;
-};
+  children: React.ReactNode
+}
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
@@ -25,5 +25,5 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         {children}
       </ThemeProvider>
     </WebsocketProvider>
-  );
-};
+  )
+}

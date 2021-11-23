@@ -1,13 +1,9 @@
-import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
-import { BoxProps } from '@mui/system';
-import { grey } from '@mui/material/colors';
+import React from 'react'
+import { Box, Typography, Link } from '@mui/material'
+import { BoxProps } from '@mui/system'
+import { grey } from '@mui/material/colors'
 
-const Divider = () => (
-  <Typography sx={{ mx: 1, color: grey[600], display: 'inline-block' }}>
-    /
-  </Typography>
-);
+const Divider = () => <Typography sx={{ mx: 1, color: grey[600], display: 'inline-block' }}>/</Typography>
 
 const Footer: React.VFC<BoxProps> = ({ ...props }) => {
   return (
@@ -26,10 +22,7 @@ const Footer: React.VFC<BoxProps> = ({ ...props }) => {
       }}
     >
       <Box sx={{ m: 'auto', textAlign: 'center' }}>
-        <Link
-          href={`https://github.com/daikiojm/bitbank-depth-chart`}
-          target="_blank"
-        >
+        <Link href={`https://github.com/daikiojm/bitbank-depth-chart`} target="_blank">
           <Typography
             sx={{
               textAlign: 'center',
@@ -66,7 +59,7 @@ const Footer: React.VFC<BoxProps> = ({ ...props }) => {
         </Link>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

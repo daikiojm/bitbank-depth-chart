@@ -18,6 +18,9 @@ yarn install
 
 # start
 yarn dev
+
+# format code
+yarn fix
 ```
 
 ## Stack
