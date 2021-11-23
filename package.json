@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
+    "test": "echo 'TODO'",
     "upgrade-deps": "yarn upgrade-interactive"
   },
   "dependencies": {
