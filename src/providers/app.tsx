@@ -17,7 +17,11 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     <WebsocketProvider>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <GlobalStyles styles={{ ul: { paddingLeft: 0, marginTop: 0 } }} />
+        <GlobalStyles
+          styles={{
+            ul: { paddingLeft: 0, marginTop: 0 },
+          }}
+        />
         {children}
       </ThemeProvider>
     </WebsocketProvider>
