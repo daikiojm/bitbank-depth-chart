@@ -22,8 +22,9 @@ yarn dev
 
 ## Stack
 
-- React
-- MUI
+- [React](https://reactjs.org/)
+- [MUI](https://mui.com/)
+- [Highcharts](https://www.highcharts.com/) ([highcharts-react](https://github.com/highcharts/highcharts-react))
 - [react-use-bitbank](https://github.com/daikiojm/react-use-bitbank)
 
 [demo]: https://daikiojm.github.io/bitbank-depth-chart/
