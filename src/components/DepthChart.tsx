@@ -18,8 +18,9 @@ type DepthWithStackedVolume = Depth & {
 };
 
 const defaultChartOptions: Partial<Options> = {
-  title: {
-    text: 'ETH-BTC Market Depth',
+  title: undefined,
+  chart: {
+    height: 500,
   },
   xAxis: {
     minPadding: 0,
@@ -156,7 +157,7 @@ const DepthChart: React.VFC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Box>
+      <Box sx={{ width: '100%' }}>
         <HighchartsReact highcharts={Highcharts} options={options} />
       </Box>
     </Box>
