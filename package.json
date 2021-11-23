@@ -1,10 +1,11 @@
 {
   "name": "bitbank-depth-chart",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "upgrade-deps": "yarn upgrade-interactive"
   },
   "dependencies": {
     "react": "^17.0.0",
