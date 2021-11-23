@@ -8,4 +8,22 @@
 
 > This implementation is for reference only as API constraints do not allow all Depth (200 is Max).
 
+<p align="center"><img src=".github/screenshot.png"/></p>
+
+## Setup
+
+```bash
+# install
+yarn install
+
+# start
+yarn dev
+```
+
+## Stack
+
+- React
+- MUI
+- [react-use-bitbank](https://github.com/daikiojm/react-use-bitbank)
+
 [demo]: https://daikiojm.github.io/bitbank-depth-chart/
