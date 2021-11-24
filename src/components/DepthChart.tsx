@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { Box } from '@mui/material'
+import React, { useEffect, useMemo, useRef } from 'react'
+import { Box, Fade } from '@mui/material'
 import Highcharts, { Options } from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useDepth } from 'react-use-bitbank'
 
 import { DEPTH_PRICE_INDEX, DEPTH_AMOUNT_INDEX } from '../constants'
+
+const CHART_ENTER_DELAY = 1200
 
 const pair = 'btc_jpy'
 
@@ -21,6 +23,10 @@ const defaultChartOptions: Partial<Options> = {
   title: undefined,
   chart: {
     height: 500,
+  },
+  loading: {
+    hideDuration: 300,
+    showDuration: 300,
   },
   xAxis: {
     minPadding: 0,
@@ -100,7 +106,8 @@ const defaultChartOptions: Partial<Options> = {
 
 const DepthChart: React.VFC = () => {
   const depth = useDepth(pair, 200)
-  const [options, setOptions] = useState<Options>(defaultChartOptions)
+  const chartComponentRef = useRef<HighchartsReact.RefObject>(null)
+  const [chartVisible, setChartVisible] = React.useState(false)
 
   const asksWithStackedVolume = useMemo<DepthWithStackedVolume[]>(() => {
     return depth.asks.reduce((prev, curr) => {
@@ -125,9 +132,13 @@ const DepthChart: React.VFC = () => {
   }, [depth.bids])
 
   useEffect(() => {
-    setOptions((prev) => {
-      return {
-        ...prev,
+    const timer = setTimeout(() => setChartVisible(true), CHART_ENTER_DELAY)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    if (chartComponentRef.current) {
+      chartComponentRef.current.chart.update({
         series: [
           {
             ...defaultChartOptions.series![0],
@@ -138,15 +149,17 @@ const DepthChart: React.VFC = () => {
             data: asksWithStackedVolume.map((a) => [+a.price, +a.stackedVolume]) as any,
           },
         ],
-      }
-    })
+      })
+    }
   }, [asksWithStackedVolume, bidsWithStackedVolume])
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Box sx={{ width: '100%' }}>
-        <HighchartsReact highcharts={Highcharts} options={options} />
-      </Box>
+      <Fade in={chartVisible} mountOnEnter={false}>
+        <Box sx={{ width: '100%' }}>
+          <HighchartsReact ref={chartComponentRef} highcharts={Highcharts} options={defaultChartOptions} />
+        </Box>
+      </Fade>
     </Box>
   )
 }

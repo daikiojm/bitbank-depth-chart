@@ -2,7 +2,11 @@ import React from 'react'
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 
-const TopNavigation: React.VFC = () => {
+type Props = {
+  onClickMenu: () => void
+}
+
+const TopNavigation: React.VFC<Props> = ({ onClickMenu }) => {
   const handleRefresh = () => {
     window.location.reload()
   }
@@ -11,7 +15,7 @@ const TopNavigation: React.VFC = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={onClickMenu}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 'bold' }}>
