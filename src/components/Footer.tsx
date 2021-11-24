@@ -3,9 +3,11 @@ import { Box, Typography, Link } from '@mui/material'
 import { BoxProps } from '@mui/system'
 import { grey } from '@mui/material/colors'
 
+type Props = BoxProps
+
 const Divider = () => <Typography sx={{ mx: 1, color: grey[600], display: 'inline-block' }}>/</Typography>
 
-const Footer: React.VFC<BoxProps> = ({ ...props }) => {
+const Footer: React.VFC<Props> = ({ ...props }) => {
   return (
     <Box
       {...props}

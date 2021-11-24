@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef } from 'react'
-import { Box, Fade } from '@mui/material'
+import { Box, Fade, CircularProgress } from '@mui/material'
 import Highcharts, { Options } from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useDepth } from 'react-use-bitbank'
 
-import { DEPTH_PRICE_INDEX, DEPTH_AMOUNT_INDEX } from '../constants'
+import { DEPTH_PRICE_INDEX, DEPTH_AMOUNT_INDEX } from '@/constants'
 
 const CHART_ENTER_DELAY = 1200
 
@@ -155,6 +155,7 @@ const DepthChart: React.VFC = () => {
 
   return (
     <Box sx={{ display: 'flex' }}>
+      {!chartVisible && <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%', marginLeft: '-20px' }} />}
       <Fade in={chartVisible} mountOnEnter={false}>
         <Box sx={{ width: '100%' }}>
           <HighchartsReact ref={chartComponentRef} highcharts={Highcharts} options={defaultChartOptions} />

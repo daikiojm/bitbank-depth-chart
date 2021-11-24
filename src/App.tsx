@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Container, Drawer } from '@mui/material'
 
 import { AppProvider } from './providers/app'
@@ -7,28 +7,28 @@ import DepthChart from './components/DepthChart'
 import Footer from './components/Footer'
 import DrawerInner from './components/DrawerInner'
 
-const drawerWidth = 240
+const DRAWER_WIDTH = 240
 
 function App() {
   const [open, setOpen] = useState<boolean>(false)
 
-  const handleDrawerOpen = () => {
+  const handleDrawerOpen = useCallback(() => {
     setOpen(true)
-  }
+  }, [setOpen])
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = useCallback(() => {
     setOpen(false)
-  }
+  }, [setOpen])
 
   return (
     <AppProvider>
       <TopNavigation onClickMenu={handleDrawerOpen} />
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: DRAWER_WIDTH,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: drawerWidth,
+            width: DRAWER_WIDTH,
             boxSizing: 'border-box',
           },
         }}
