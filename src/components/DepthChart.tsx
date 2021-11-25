@@ -7,11 +7,10 @@ import { useDepth } from 'react-use-bitbank'
 import { Pair } from '@/types'
 import { DEPTH_PRICE_INDEX, DEPTH_AMOUNT_INDEX } from '@/constants'
 import { isJpyPair } from '@/utils'
-import { ColorModeContext } from '../providers/theme'
 
 const DEPTH_LENGTH = 200
 const DEPTH_BTC_PAIR_LENGTH = 50
-const CHART_ENTER_DELAY = 1500
+const CHART_ENTER_DELAY = 1200
 
 type Depth = {
   price: number
@@ -29,6 +28,7 @@ type Props = {
 const defaultChartOptions: Partial<Options> = {
   title: undefined,
   chart: {
+    animation: false,
     height: 500,
   },
   loading: {
