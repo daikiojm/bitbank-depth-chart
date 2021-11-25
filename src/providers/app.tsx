@@ -1,17 +1,8 @@
-import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline, GlobalStyles, createTheme } from '@mui/material'
 import { blueGrey } from '@mui/material/colors'
 import { WebsocketProvider } from 'react-use-bitbank'
 
-const theme = createTheme({
-  typography: {
-    fontSize: 12,
-  },
-  palette: {
-    // mode: 'dark',
-    primary: blueGrey,
-  },
-})
+import ColorModeProvider from './theme'
 
 type AppProviderProps = {
   children: React.ReactNode
@@ -20,7 +11,7 @@ type AppProviderProps = {
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <WebsocketProvider>
-      <ThemeProvider theme={theme}>
+      <ColorModeProvider>
         <CssBaseline />
         <GlobalStyles
           styles={{
@@ -28,7 +19,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
           }}
         />
         {children}
-      </ThemeProvider>
+      </ColorModeProvider>
     </WebsocketProvider>
   )
 }
