@@ -1,10 +1,15 @@
 import { ThemeProvider } from '@mui/material/styles'
 import { CssBaseline, GlobalStyles, createTheme } from '@mui/material'
+import { blueGrey } from '@mui/material/colors'
 import { WebsocketProvider } from 'react-use-bitbank'
 
 const theme = createTheme({
   typography: {
     fontSize: 12,
+  },
+  palette: {
+    // mode: 'dark',
+    primary: blueGrey,
   },
 })
 

@@ -1,14 +1,16 @@
 import React, { useEffect, useMemo, useRef } from 'react'
-import { Box, Fade, CircularProgress } from '@mui/material'
+import { Box, Fade, CircularProgress, useTheme } from '@mui/material'
 import Highcharts, { Options } from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 import { useDepth } from 'react-use-bitbank'
 
+import { Pair } from '@/types'
 import { DEPTH_PRICE_INDEX, DEPTH_AMOUNT_INDEX } from '@/constants'
+import { isJpyPair } from '@/utils'
 
-const CHART_ENTER_DELAY = 1200
-
-const pair = 'btc_jpy'
+const DEPTH_LENGTH = 200
+const DEPTH_BTC_PAIR_LENGTH = 50
+const CHART_ENTER_DELAY = 1500
 
 type Depth = {
   price: number
@@ -17,6 +19,10 @@ type Depth = {
 
 type DepthWithStackedVolume = Depth & {
   stackedVolume: Depth['volume']
+}
+
+type Props = {
+  pair?: Pair
 }
 
 const defaultChartOptions: Partial<Options> = {
@@ -104,37 +110,51 @@ const defaultChartOptions: Partial<Options> = {
   ],
 }
 
-const DepthChart: React.VFC = () => {
-  const depth = useDepth(pair, 200)
+const getDepthLength = (pair: Pair) => (isJpyPair(pair) ? DEPTH_LENGTH : DEPTH_BTC_PAIR_LENGTH)
+
+const DepthChart: React.VFC<Props> = ({ pair = 'btc_jpy' }) => {
+  const theme = useTheme()
+  const depth = useDepth(pair, getDepthLength(pair))
   const chartComponentRef = useRef<HighchartsReact.RefObject>(null)
   const [chartVisible, setChartVisible] = React.useState(false)
 
   const asksWithStackedVolume = useMemo<DepthWithStackedVolume[]>(() => {
-    return depth.asks.reduce((prev, curr) => {
+    return depth.asks.reduce<DepthWithStackedVolume[]>((prev, curr) => {
       const next: DepthWithStackedVolume = {
         price: +curr[DEPTH_PRICE_INDEX],
         volume: +curr[DEPTH_AMOUNT_INDEX],
         stackedVolume: prev.length > 0 ? prev[prev.length - 1].stackedVolume + +curr[DEPTH_AMOUNT_INDEX] : 0,
       }
       return [...prev, next]
-    }, [] as DepthWithStackedVolume[])
+    }, [])
   }, [depth.asks])
 
   const bidsWithStackedVolume = useMemo<DepthWithStackedVolume[]>(() => {
-    return depth.bids.reduce((prev, curr) => {
+    return depth.bids.reduce<DepthWithStackedVolume[]>((prev, curr) => {
       const next: DepthWithStackedVolume = {
         price: +curr[DEPTH_PRICE_INDEX],
         volume: +curr[DEPTH_AMOUNT_INDEX],
         stackedVolume: prev.length > 0 ? prev[prev.length - 1].stackedVolume + +curr[DEPTH_AMOUNT_INDEX] : 0,
       }
       return [...prev, next]
-    }, [] as DepthWithStackedVolume[])
+    }, [])
   }, [depth.bids])
 
   useEffect(() => {
+    setChartVisible(false)
     const timer = setTimeout(() => setChartVisible(true), CHART_ENTER_DELAY)
     return () => clearTimeout(timer)
-  }, [])
+  }, [pair])
+
+  useEffect(() => {
+    if (chartComponentRef.current) {
+      chartComponentRef.current.chart.update({
+        chart: {
+          backgroundColor: theme.palette.background.default,
+        },
+      })
+    }
+  }, [theme.palette.mode])
 
   useEffect(() => {
     if (chartComponentRef.current) {
@@ -151,10 +171,10 @@ const DepthChart: React.VFC = () => {
         ],
       })
     }
-  }, [asksWithStackedVolume, bidsWithStackedVolume])
+  }, [pair, asksWithStackedVolume, bidsWithStackedVolume])
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', position: 'relative' }}>
       {!chartVisible && <CircularProgress sx={{ position: 'absolute', top: '50%', left: '50%', marginLeft: '-20px' }} />}
       <Fade in={chartVisible} mountOnEnter={false}>
         <Box sx={{ width: '100%' }}>

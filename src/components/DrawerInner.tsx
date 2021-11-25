@@ -1,28 +1,25 @@
 import React from 'react'
-import { List, ListItem, ListItemText, ListItemIcon, Divider } from '@mui/material'
-import MailIcon from '@mui/icons-material/Mail'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
+import { List, ListItem, ListItemText, Divider } from '@mui/material'
 
-const DrawerInner: React.VFC = () => {
+import { ALL_PAIRS } from '@/constants'
+import { Pair } from '@/types'
+import { toDisplayPair } from '@/utils'
+
+type Props = {
+  onChangePair: (pair: Pair) => void
+}
+
+const DrawerInner: React.VFC<Props> = ({ onChangePair }) => {
   return (
     <>
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        {ALL_PAIRS.map((pair) => (
+          <ListItem button key={pair} onClick={() => onChangePair(pair)}>
+            <ListItemText primary={toDisplayPair(pair)} />
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </>
   )
 }

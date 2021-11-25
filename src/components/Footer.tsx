@@ -1,13 +1,18 @@
 import React from 'react'
-import { Box, Typography, Link } from '@mui/material'
+import { Box, Typography, Link, useTheme } from '@mui/material'
 import { BoxProps } from '@mui/system'
-import { grey } from '@mui/material/colors'
 
 type Props = BoxProps
 
-const Divider = () => <Typography sx={{ mx: 1, color: grey[600], display: 'inline-block' }}>/</Typography>
+const Divider = () => {
+  const theme = useTheme()
+
+  return <Typography sx={{ mx: 1, color: theme.palette.divider, display: 'inline-block' }}>/</Typography>
+}
 
 const Footer: React.VFC<Props> = ({ ...props }) => {
+  const theme = useTheme()
+
   return (
     <Box
       {...props}
@@ -18,8 +23,8 @@ const Footer: React.VFC<Props> = ({ ...props }) => {
         flexDirection: 'column',
         justifyContent: 'center',
         height: 120,
-        backgroundColor: grey[50],
-        borderTop: `1px solid ${grey[200]}`,
+        backgroundColor: theme.palette.action.disabledBackground,
+        borderTop: `1px solid ${theme.palette.divider}`,
         ...props.sx,
       }}
     >
@@ -28,7 +33,7 @@ const Footer: React.VFC<Props> = ({ ...props }) => {
           <Typography
             sx={{
               textAlign: 'center',
-              color: grey[600],
+              color: theme.palette.text.secondary,
               display: 'inline-block',
             }}
           >
@@ -40,7 +45,7 @@ const Footer: React.VFC<Props> = ({ ...props }) => {
           <Typography
             sx={{
               textAlign: 'center',
-              color: grey[600],
+              color: theme.palette.text.secondary,
               display: 'inline-block',
             }}
           >
@@ -52,11 +57,11 @@ const Footer: React.VFC<Props> = ({ ...props }) => {
           <Typography
             sx={{
               textAlign: 'center',
-              color: grey[600],
+              color: theme.palette.text.secondary,
               display: 'inline-block',
             }}
           >
-            bitbank.cc
+            Data Source (bitbank.cc)
           </Typography>
         </Link>
       </Box>
