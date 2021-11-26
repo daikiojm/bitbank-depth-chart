@@ -21,6 +21,9 @@ yarn dev
 
 # format code
 yarn fix
+
+# test
+yarn test
 ```
 
 ## Stack

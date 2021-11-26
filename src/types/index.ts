@@ -1,4 +1,4 @@
-import { BASE_CURRENCIES, QUOTE_CURRENCIES } from '../constants'
+import { BASE_CURRENCIES, QUOTE_CURRENCIES } from '@/constants'
 
 type BC = typeof BASE_CURRENCIES[number]
 type QC = typeof QUOTE_CURRENCIES[number]

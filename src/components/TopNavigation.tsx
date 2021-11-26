@@ -22,26 +22,27 @@ const TopNavigation: React.VFC<Props> = ({ onClickMenu }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={onClickMenu}>
             <MenuIcon />
           </IconButton>
-          <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-start' }}>
-            <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', lineHeight: '44px' }}>
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', display: 'inline-block' }}>
               Depth Chart
+              <Typography
+                sx={{
+                  ml: 1,
+                  fontSize: '12px',
+                  lineHeight: '14px',
+                  display: 'inline-block',
+                  [theme.breakpoints.down('sm')]: {
+                    display: 'none',
+                  },
+                }}
+              >
+                bitbank.cc
+              </Typography>
             </Typography>
-            <Box
-              sx={{
-                ml: 2,
-                my: 'auto',
-                [theme.breakpoints.down('sm')]: {
-                  display: 'none',
-                },
-              }}
-            >
-              <Typography sx={{ fontSize: '10px', lineHeight: '10px' }}>Data Source by</Typography>
-              <Typography sx={{ fontSize: '14px', lineHeight: '14px' }}>bitbank.cc</Typography>
-            </Box>
           </Box>
           <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}

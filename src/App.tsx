@@ -2,13 +2,12 @@ import { useState, useCallback } from 'react'
 import { Container, Drawer } from '@mui/material'
 
 import { Pair } from '@/types'
-
-import { AppProvider } from './providers/app'
-import TopNavigation from './components/TopNavigation'
-import DepthChart from './components/DepthChart'
-import Footer from './components/Footer'
-import DrawerInner from './components/DrawerInner'
-import Ticker from './components/Ticker'
+import { AppProvider } from '@/providers/app'
+import TopNavigation from '@/components/TopNavigation'
+import DepthChart from '@/components/DepthChart'
+import Footer from '@/components/Footer'
+import DrawerInner from '@/components/DrawerInner'
+import Ticker from '@/components/Ticker'
 
 const DRAWER_WIDTH = 240
 

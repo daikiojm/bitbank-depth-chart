@@ -1,5 +1,5 @@
-import { CssBaseline, GlobalStyles, createTheme } from '@mui/material'
-import { blueGrey } from '@mui/material/colors'
+import React from 'react'
+import { CssBaseline, GlobalStyles } from '@mui/material'
 import { WebsocketProvider } from 'react-use-bitbank'
 
 import ColorModeProvider from './theme'

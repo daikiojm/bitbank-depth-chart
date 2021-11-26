@@ -11,7 +11,7 @@ type Props = {
 
 const DrawerInner: React.VFC<Props> = ({ onChangePair }) => {
   return (
-    <>
+    <React.Fragment>
       <List>
         {ALL_PAIRS.map((pair) => (
           <ListItem button key={pair} onClick={() => onChangePair(pair)}>
@@ -20,7 +20,7 @@ const DrawerInner: React.VFC<Props> = ({ onChangePair }) => {
         ))}
       </List>
       <Divider />
-    </>
+    </React.Fragment>
   )
 }
 

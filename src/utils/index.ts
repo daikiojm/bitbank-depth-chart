@@ -1,4 +1,4 @@
-import { Pair } from '../types'
+import { Pair } from '@/types'
 
 export function toDisplayPair(pair: Pair) {
   return pair.split('_').join('/').toUpperCase()
