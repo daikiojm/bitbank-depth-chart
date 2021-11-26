@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
-import { Grid, Skeleton, Card, Typography, CardProps, useTheme } from '@mui/material'
+import { Box, Avatar, Grid, Skeleton, Card, Typography, CardProps, useTheme } from '@mui/material'
 import { teal, deepOrange } from '@mui/material/colors'
 import { useTicker } from 'react-use-bitbank'
 
 import { Pair } from '@/types'
-import { toDisplayPair } from '@/utils'
+import { toDisplayPair, formatFixed, toFixed, getCoinImageUrl } from '@/utils'
+import { BTC_SYMBOL, JPY_SYMBOL } from '@/constants'
 
 type Props = CardProps & {
   pair: Pair
@@ -16,8 +17,10 @@ const Ticker: React.VFC<Props> = ({ pair, ...props }) => {
   const displayPair = useMemo(() => toDisplayPair(pair), [pair])
   const baseCurrency = useMemo(() => pair.split('_')[0].toUpperCase(), [pair])
   const quoteCurrency = useMemo(() => pair.split('_')[1].toUpperCase(), [pair])
+  const quoteSymbol = useMemo(() => (quoteCurrency === 'BTC' ? BTC_SYMBOL : JPY_SYMBOL), [quoteCurrency])
   const change = useMemo(() => (ticker ? ((+ticker.last - +ticker.open) / +ticker.open) * 100 : 0), [ticker])
   const changeColor = useMemo(() => (change >= 0 ? teal[500] : deepOrange[800]), [change])
+  const conImageUrl = useMemo(() => getCoinImageUrl(pair), [pair])
 
   return (
     <Card variant="outlined" {...props} sx={{ p: 2, display: 'flex', ...props.sx }}>
@@ -25,10 +28,22 @@ const Ticker: React.VFC<Props> = ({ pair, ...props }) => {
         <Grid item xs={12} sm={6}>
           {ticker ? (
             <React.Fragment>
-              <Typography sx={{ color: theme.palette.text.primary, fontWeight: 'bold' }}>{displayPair}</Typography>
-              <Typography sx={{ color: theme.palette.text.secondary }}>{ticker.last}</Typography>
-              <Typography sx={{ color: theme.palette.text.secondary }}>Low: {ticker.low}</Typography>
-              <Typography sx={{ color: theme.palette.text.secondary }}>High: {ticker.high}</Typography>
+              <Box sx={{ display: 'flex' }}>
+                <Avatar src={conImageUrl} sx={{ width: 15, height: 15, my: 'auto' }} />
+                <Typography sx={{ ml: 1, color: theme.palette.text.primary, fontWeight: 'bold' }}>{displayPair}</Typography>
+              </Box>
+              <Typography sx={{ color: theme.palette.text.secondary }}>
+                {quoteSymbol}
+                {formatFixed(ticker.last)}
+              </Typography>
+              <Typography sx={{ color: theme.palette.text.secondary }}>
+                Low: {quoteSymbol}
+                {formatFixed(ticker.low)}
+              </Typography>
+              <Typography sx={{ color: theme.palette.text.secondary }}>
+                High: {quoteSymbol}
+                {formatFixed(ticker.high)}
+              </Typography>
             </React.Fragment>
           ) : (
             <React.Fragment>
@@ -43,14 +58,14 @@ const Ticker: React.VFC<Props> = ({ pair, ...props }) => {
             <React.Fragment>
               <Typography sx={{ color: theme.palette.text.secondary }}>Base currency: {baseCurrency} </Typography>
               <Typography sx={{ color: theme.palette.text.secondary }}>Quote currency: {quoteCurrency} </Typography>
-              <Typography sx={{ color: theme.palette.text.secondary }}>
-                Change today:
-                <Typography sx={{ color: changeColor, display: 'inline-block' }}>
+              <Box sx={{ display: 'flex' }}>
+                <Typography sx={{ color: theme.palette.text.secondary }}>Change today:</Typography>
+                <Typography sx={{ ml: 1, color: changeColor }}>
                   {change > 0 && '+'}
-                  {change.toFixed(2)}%
+                  {toFixed(change, 2)}%
                 </Typography>
-              </Typography>
-              <Typography sx={{ color: theme.palette.text.secondary }}>24h volume: {ticker.vol}</Typography>
+              </Box>
+              <Typography sx={{ color: theme.palette.text.secondary }}>24h volume: {formatFixed(ticker.vol)}</Typography>
             </React.Fragment>
           ) : (
             <React.Fragment>

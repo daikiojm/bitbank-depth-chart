@@ -10,7 +10,7 @@ import { isJpyPair } from '@/utils'
 
 const DEPTH_LENGTH = 200
 const DEPTH_BTC_PAIR_LENGTH = 50
-const CHART_ENTER_DELAY = 1200
+const CHART_ENTER_DELAY = 1500
 
 type Depth = {
   price: number

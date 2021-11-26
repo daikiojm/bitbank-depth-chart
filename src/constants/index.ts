@@ -1,9 +1,9 @@
-import { Pair } from '@/types'
+import { Pair, QC } from '@/types'
 
 export const DEPTH_PRICE_INDEX = 0
 export const DEPTH_AMOUNT_INDEX = 1
 
-export const BASE_CURRENCIES = ['btc', 'jpy'] as const
+export const BASE_CURRENCIES = ['jpy', 'btc'] as const
 export const QUOTE_CURRENCIES = ['btc', 'xrp', 'ltc', 'eth', 'mona', 'bcc', 'xlm', 'qtum', 'bat', 'omg', 'xym'] as const
 
 export const PAIR_SEPARATOR = '_'
@@ -11,3 +11,23 @@ export const ALL_PAIRS = BASE_CURRENCIES.reduce<string[]>((prev, curr) => {
   const p = QUOTE_CURRENCIES.map((qc) => `${qc}${PAIR_SEPARATOR}${curr}`)
   return [...prev, ...p]
 }, []).filter((p) => p.split(PAIR_SEPARATOR)[0] !== p.split(PAIR_SEPARATOR)[1]) as Pair[]
+
+export const JPY_SYMBOL = '¥'
+export const BTC_SYMBOL = '₿'
+
+export const CMC_COIN_IDS: { [key in QC]: number } = {
+  btc: 1,
+  xrp: 52,
+  ltc: 2,
+  eth: 1027,
+  mona: 213,
+  bcc: 1831,
+  xlm: 512,
+  qtum: 1684,
+  bat: 1697,
+  omg: 1808,
+  xym: 8677,
+}
+
+export const CMC_STATIC_BASE_URL = 'https://s2.coinmarketcap.com/static/img/coins/64x64/'
+export const CMC_STATIC_EXTENSION = '.png'

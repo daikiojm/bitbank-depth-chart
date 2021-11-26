@@ -1,9 +1,9 @@
 import React from 'react'
-import { List, ListItem, ListItemText, Divider } from '@mui/material'
+import { Avatar, List, ListItem, ListItemText, ListItemIcon, Divider } from '@mui/material'
 
 import { ALL_PAIRS } from '@/constants'
 import { Pair } from '@/types'
-import { toDisplayPair } from '@/utils'
+import { toDisplayPair, getCoinImageUrl } from '@/utils'
 
 type Props = {
   onChangePair: (pair: Pair) => void
@@ -15,6 +15,9 @@ const DrawerInner: React.VFC<Props> = ({ onChangePair }) => {
       <List>
         {ALL_PAIRS.map((pair) => (
           <ListItem button key={pair} onClick={() => onChangePair(pair)}>
+            <ListItemIcon sx={{ minWidth: 24 }}>
+              <Avatar src={getCoinImageUrl(pair)} sx={{ width: 15, height: 15, my: 'auto' }} />
+            </ListItemIcon>
             <ListItemText primary={toDisplayPair(pair)} />
           </ListItem>
         ))}
