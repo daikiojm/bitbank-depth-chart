@@ -13,6 +13,7 @@ test('should get all pairs', () => {
     'bat_jpy',
     'omg_jpy',
     'xym_jpy',
+    'link_jpy',
     'xrp_btc',
     'ltc_btc',
     'eth_btc',
@@ -23,5 +24,6 @@ test('should get all pairs', () => {
     'bat_btc',
     'omg_btc',
     'xym_btc',
+    'link_btc',
   ])
 })
