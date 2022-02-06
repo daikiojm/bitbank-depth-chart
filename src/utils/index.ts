@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 
-import { CMC_COIN_IDS, CMC_STATIC_BASE_URL, CMC_STATIC_EXTENSION, PAIR_SEPARATOR } from '@/constants'
-import { Pair, QC } from '@/types'
+import { CMC_COIN_IDS, CMC_STATIC_BASE_URL, CMC_STATIC_EXTENSION, PAIR_SEPARATOR } from '../constants'
+import { Pair, QC } from '../types'
 
 export function toDisplayPair(pair: Pair) {
   return pair.split(PAIR_SEPARATOR).join('/').toUpperCase()
