@@ -3,8 +3,29 @@ import { Pair, QC } from '@/types'
 export const DEPTH_PRICE_INDEX = 0
 export const DEPTH_AMOUNT_INDEX = 1
 
-export const BASE_CURRENCIES = ['jpy', 'btc'] as const
-export const QUOTE_CURRENCIES = ['btc', 'xrp', 'ltc', 'eth', 'mona', 'bcc', 'xlm', 'qtum', 'bat', 'omg', 'xym', 'link', 'mkr'] as const
+export const BASE_CURRENCIES = ['jpy'] as const
+export const QUOTE_CURRENCIES = [
+  'btc',
+  'xrp',
+  'ltc',
+  'eth',
+  'mona',
+  'bcc',
+  'xlm',
+  'qtum',
+  'bat',
+  'omg',
+  'xym',
+  'link',
+  'mkr',
+  'matic',
+  'dot',
+  'doge',
+  'boba',
+  'enj',
+  'astr',
+  'ada',
+] as const
 
 export const PAIR_SEPARATOR = '_'
 export const ALL_PAIRS = BASE_CURRENCIES.reduce<string[]>((prev, curr) => {
@@ -29,6 +50,13 @@ export const CMC_COIN_IDS: { [key in QC]: number } = {
   xym: 8677,
   link: 1975,
   mkr: 1518,
+  matic: 3890,
+  dot: 6636,
+  doge: 74,
+  boba: 14556,
+  enj: 2130,
+  astr: 12885,
+  ada: 2010,
 }
 
 export const CMC_STATIC_BASE_URL = 'https://s2.coinmarketcap.com/static/img/coins/64x64/'
