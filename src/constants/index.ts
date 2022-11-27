@@ -25,6 +25,7 @@ export const QUOTE_CURRENCIES = [
   'enj',
   'astr',
   'ada',
+  'avax',
 ] as const
 
 export const PAIR_SEPARATOR = '_'
@@ -57,6 +58,7 @@ export const CMC_COIN_IDS: { [key in QC]: number } = {
   enj: 2130,
   astr: 12885,
   ada: 2010,
+  avax: 5805,
 }
 
 export const CMC_STATIC_BASE_URL = 'https://s2.coinmarketcap.com/static/img/coins/64x64/'

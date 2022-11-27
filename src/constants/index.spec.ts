@@ -22,5 +22,6 @@ test('should get all pairs', () => {
     'enj_jpy',
     'astr_jpy',
     'ada_jpy',
+    'avax_jpy',
   ])
 })
