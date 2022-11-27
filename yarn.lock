@@ -3470,10 +3470,10 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-use-bitbank@^0.2.0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/react-use-bitbank/-/react-use-bitbank-0.2.1.tgz#7dd20594553b279a336f4db2bc34f10f3950ad72"
-  integrity sha512-fNdX/vSn+KyZNsPeWpJucEM0jD0YfyzoAp804dNwV1LoaV6H6yPvfhE/GgsrgB4qdGd/Z6ZZivJ3uXz0QD5noQ==
+react-use-bitbank@^0.2.1:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-use-bitbank/-/react-use-bitbank-0.2.2.tgz#ce6bba849bb9d266d26db86ce730393da4f79d55"
+  integrity sha512-ed+wf25h/NWFywr3GSDF8HmAvvlBu+m2slvDWVf/ZhsFiJ5RU2GLEZ3NjBSPlQDCfSOyTRu6nVwSzHIxf0uwUQ==
   dependencies:
     socket.io-client "2.4.0"
 
