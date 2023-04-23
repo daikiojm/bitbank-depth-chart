@@ -4,6 +4,7 @@ export const DEPTH_PRICE_INDEX = 0
 export const DEPTH_AMOUNT_INDEX = 1
 
 export const BASE_CURRENCIES = ['jpy'] as const
+// see: https://github.com/daikiojm/react-use-bitbank/blob/main/src/lib/constants.ts#L12
 export const QUOTE_CURRENCIES = [
   'btc',
   'xrp',
@@ -26,6 +27,14 @@ export const QUOTE_CURRENCIES = [
   'astr',
   'ada',
   'avax',
+  'axs',
+  'flr',
+  'sand',
+  'gala',
+  'ape',
+  'chz',
+  'oas',
+  'mana',
 ] as const
 
 export const PAIR_SEPARATOR = '_'
@@ -59,6 +68,14 @@ export const CMC_COIN_IDS: { [key in QC]: number } = {
   astr: 12885,
   ada: 2010,
   avax: 5805,
+  axs: 6783,
+  flr: 7950,
+  sand: 6210,
+  gala: 7080,
+  ape: 18876,
+  chz: 4066,
+  oas: 22265,
+  mana: 1966,
 }
 
 export const CMC_STATIC_BASE_URL = 'https://s2.coinmarketcap.com/static/img/coins/64x64/'
