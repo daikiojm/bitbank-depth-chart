@@ -7,6 +7,8 @@
     "serve": "vite preview",
     "fix": "prettier --write .",
     "test": "jest",
+    "test:e2e": "playwright test tests --config playwright.config.ts",
+    "test:e2e:dev": "PLAYWRIGHT_TEST_BASE_URL=http://127.0.0.1:5173 playwright test tests --config playwright.config.ts",
     "upgrade-deps": "yarn upgrade-interactive",
     "sync-deps": "npx syncyarnlock -s -k"
   },
