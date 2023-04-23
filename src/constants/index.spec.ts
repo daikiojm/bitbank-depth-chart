@@ -23,5 +23,13 @@ test('should get all pairs', () => {
     'astr_jpy',
     'ada_jpy',
     'avax_jpy',
+    'axs_jpy',
+    'flr_jpy',
+    'sand_jpy',
+    'gala_jpy',
+    'ape_jpy',
+    'chz_jpy',
+    'oas_jpy',
+    'mana_jpy',
   ])
 })
